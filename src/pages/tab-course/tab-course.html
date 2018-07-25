@@ -1,0 +1,25 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>คอร์ส</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <ion-list>
+      <ion-item *ngFor="let data of responseData" (click)="courseDetail(data.id)">
+        <ion-thumbnail item-start>
+          <img src="http://192.168.1.45/combindrestapi/images/{{data.images}}">
+        </ion-thumbnail>
+       <h1>{{data.name}}</h1>
+       <p>{{data.description}}</p>
+      </ion-item>
+    </ion-list>
+
+</ion-content>

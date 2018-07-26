@@ -31,6 +31,10 @@ import { Device } from '@ionic-native/device';
 import { Camera } from '@ionic-native/camera';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
+// Push notification with firebase
+import { FCM } from '@ionic-native/fcm';
+import { PushdetailPage } from '../pages/pushdetail/pushdetail';
+import { ChartPage } from '../pages/chart/chart';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,9 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     TabsPage,
     CoursedetailPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    PushdetailPage,
+    ChartPage
   ],
   imports: [
     BrowserModule,
@@ -71,7 +77,9 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     TabsPage,
     CoursedetailPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    PushdetailPage,
+    ChartPage
   ],
   providers: [
     StatusBar,
@@ -80,7 +88,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     WebapiServiceProvider,
     Device,
     Camera,
-    BarcodeScanner
+    BarcodeScanner,
+    FCM
   ]
 })
 export class AppModule {}

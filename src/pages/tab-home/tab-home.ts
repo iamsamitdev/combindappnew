@@ -6,6 +6,7 @@ import { RegisterPage } from '../register/register';
 import { Device } from '@ionic-native/device';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { ChartPage } from '../chart/chart';
 
 @IonicPage()
 @Component({
@@ -95,6 +96,10 @@ export class TabHomePage {
             console.log('Error', err);
         });
     }
+  }
+
+  showChart(){
+    this.app.getRootNav().push(ChartPage);
   }
 
 }

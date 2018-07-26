@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -7,6 +7,10 @@ import { SideSchedulePage } from '../pages/side-schedule/side-schedule';
 import { SidePaymentPage } from '../pages/side-payment/side-payment';
 import { SidePortfolioPage } from '../pages/side-portfolio/side-portfolio';
 import { SideSettingPage } from '../pages/side-setting/side-setting';
+
+// Push notification with firebase
+import { FCM } from '@ionic-native/fcm';
+import { PushdetailPage } from '../pages/pushdetail/pushdetail';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,9 +20,14 @@ export class MyApp {
 
   rootPage: any = TabsPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public fcm: FCM,
+    public alertCtrl: AlertController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -37,6 +46,39 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      // Pushnotification
+      if(!this.platform.is('core')){
+
+        // ลงทะเบียนเครื่องเพื่อรับ Token
+        this.fcm.subscribeToTopic('all');
+        this.fcm.getToken().then(token=>{
+          let alert = this.alertCtrl.create({
+            title:"Your token",
+            //message: token,
+            inputs: [
+              {
+                name: 'token',
+                value: token
+              }
+            ],
+            buttons: ['Dismiss']
+          });
+          alert.present();
+        });
+
+        // รับข้อความแจ้งเตือน
+        this.fcm.onNotification().subscribe(data => {
+          if(data.wasTapped){
+            //alert("Received in background");
+            this.nav.push(PushdetailPage,{sid:data.pid});
+          } else {
+            alert("Received in foreground");
+          };
+        });
+
+      } // if(!this.platform.is('core'))
+
     });
   }
 

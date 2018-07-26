@@ -1,0 +1,7 @@
+{
+    "name": "combindapp",
+    "integrations": {
+      "cordova": {}
+    },
+    "type": "ionic-angular"
+  }

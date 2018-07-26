@@ -48,7 +48,7 @@ export class LoginPage {
         // ปิดหน้า login แล้วกลับไปหน้าหลัก
         this.navCtrl.setRoot(TabsPage);
       }else{ // login fail
-        // แสดงหน้าต่างแจ้งผู้ใช้
+        // แสดงหน้าต่างแจ้งผู้ใช้ 
         let alert = this.alertCtrl.create({
           title: "สถานะการเข้าระบบ",
           subTitle:"เข้าสู่ระบบไม่สำเร็จ",

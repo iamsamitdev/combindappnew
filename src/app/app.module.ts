@@ -27,6 +27,10 @@ import { CoursedetailPage } from '../pages/coursedetail/coursedetail';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 
+import { Device } from '@ionic-native/device';
+import { Camera } from '@ionic-native/camera';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+
 
 @NgModule({
   declarations: [
@@ -73,7 +77,10 @@ import { RegisterPage } from '../pages/register/register';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    WebapiServiceProvider
+    WebapiServiceProvider,
+    Device,
+    Camera,
+    BarcodeScanner
   ]
 })
 export class AppModule {}
